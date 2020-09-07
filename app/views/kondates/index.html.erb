@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>献立一覧</h1>
+
+<table>
+  <tbody>
+    <% @kondates.each do |kondate| %>
+      <tr>
+        <td><%= link_to kondate.title, kondate %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "新しい献立を作成する", new_kondate_path %>

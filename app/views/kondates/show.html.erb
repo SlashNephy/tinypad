@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>タイトル:</strong>
+  <%= @kondate.title %>
+</p>
+
+<p>
+  <strong>説明:</strong>
+  <%= @kondate.description %>
+</p>
+
+<p>
+  <strong>主食:</strong>
+  <br />
+
+  <span>
+    <% if @kondate.main_recipe.image.present? %>
+      <%= image_tag(image_path(@kondate.main_recipe.image), height: '100px') %>
+    <% end %>
+  </span>
+  <span><%= link_to @kondate.main_recipe.title, @kondate.main_recipe %></span>
+  <span>by <%= link_to @kondate.main_recipe.user.name, @kondate.main_recipe.user %></span>
+</p>
+
+<p>
+  <strong>おかず:</strong>
+  <br />
+  <% @kondate.side_recipes.each.with_index(1) do |side_recipe, idx| %>
+    <span>
+      <% if side_recipe.image.present? %>
+        <%= image_tag(image_path(side_recipe.image), height: '100px') %>
+      <% end %>
+    </span>
+    <span><%= "#{idx}." %> <%= link_to side_recipe.title, side_recipe %></span>
+    <span>by <%= link_to side_recipe.user.name, side_recipe.user %></span>
+    <br />
+  <% end %>
+</p>
+
+<%= link_to '献立を修正する', edit_kondate_path(@kondate) %> |
+<%= link_to '一覧に戻る', kondates_path %>
