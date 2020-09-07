@@ -1,0 +1,40 @@
+<%= form_with(model: kondate_form, scope: :kondate, url: form_url, local: true) do |form| %>
+  <% if kondate_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(kondate_form.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% kondate_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "タイトル" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label "説明" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label "主食のレシピ ID" %>
+    <%= form.text_field :main_recipe_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label "おかずのレシピ ID" %>
+    <%= form.text_area :side_recipe_ids %>
+    <div class="small gray">
+      入力方法: カンマ区切りで入力します。
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

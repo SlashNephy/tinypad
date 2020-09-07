@@ -1,0 +1,6 @@
+<h1>献立を修正する</h1>
+
+<%= render 'form', kondate_form: @kondate_form, form_url: kondate_path(@kondate) %>
+
+<%= link_to '献立ページに戻る', @kondate %> |
+<%= link_to '献立一覧に戻る', kondates_path %>
