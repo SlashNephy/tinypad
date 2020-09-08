@@ -8,6 +8,19 @@
 <%= link_to 'ユーザー情報を変更する', edit_user_path(@user) %> |
 <%= link_to 'ユーザー一覧に戻る', users_path %>
 
+<h1>作成した献立</h1>
+
+<table>
+  <% @user.kondates.each do |kondate| %>
+    <tr>
+      <td><%= link_to kondate.title, kondate %></td>
+      <td>by <%= link_to kondate.user.name, kondate.user %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+
 <h1>作成したレシピ</h1>
 
 <table>
