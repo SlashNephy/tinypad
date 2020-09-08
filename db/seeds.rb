@@ -49,3 +49,17 @@ end
     comment: "#{recipe.title}、とても作りやすかったです！"
   )
 end
+
+20.times do |i|
+  main_recipe = recipes.sample
+  side_recipes = recipes.sample(rand(1...5))
+  user = users.sample
+
+  Kondate.create!(
+    title: "すごい献立 #{i}",
+    description: "すごい献立の説明",
+    user_id: user.id,
+    main_recipe_id: main_recipe.id,
+    side_recipe_ids: side_recipes.map { |r| r.id }.join(",")
+  )
+end
