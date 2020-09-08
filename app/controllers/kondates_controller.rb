@@ -1,6 +1,12 @@
 class KondatesController < ApplicationController
   before_action :require_signed_in, only: %i[new edit create update destroy]
 
+  private def require_same_user
+    if current_user.nil? || current_user.id != @kondate.user_id
+      redirect_to @kondate, notice: 'You cannot edit other\'s kondate.'
+    end
+  end
+
   # GET /kondates
   def index
     @kondates = Kondate.all
@@ -19,6 +25,7 @@ class KondatesController < ApplicationController
   # GET /kondates/1/edit
   def edit
     @kondate = Kondate.find(params[:id])
+    require_same_user
     @kondate_form = KondateForm.new(@kondate)
   end
 
@@ -37,6 +44,7 @@ class KondatesController < ApplicationController
   # PATCH/PUT /kondates/1
   def update
     @kondate = Kondate.find(params[:id])
+    require_same_user
     @kondate_form = KondateForm.new(@kondate)
     @kondate_form.apply(kondate_form_params)
 
