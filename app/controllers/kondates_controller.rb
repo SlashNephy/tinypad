@@ -58,6 +58,7 @@ class KondatesController < ApplicationController
   # DELETE /kondates/1
   def destroy
     kondate = Kondate.find(params[:id])
+    require_same_user
     kondate.destroy
     redirect_to kondates_url, notice: 'Kondate was successfully destroyed.'
   end
